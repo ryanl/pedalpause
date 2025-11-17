@@ -1,8 +1,6 @@
 import asyncio
 from bleak import BleakScanner, BleakClient
 import win32api
-import win32con
-import time
 
 
 def punish():
@@ -50,10 +48,10 @@ async def run():
         bluetooth_address = None
         for _ in range(5):
             devices = await BleakScanner.discover(address_type="random")
-
+            print(repr(devices))
             for d in devices:
                 devices_seen[d.address] = d
-                if "cadence" in d.name.lower():
+                if d.name and "cadence" in d.name.lower():
                     bluetooth_address = d.address
             if bluetooth_address:
                 break
@@ -109,5 +107,5 @@ async def run():
         except Exception as e:
             print(e)
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(run())
+if __name__ == "__main__":
+    asyncio.run(run())

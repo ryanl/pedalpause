@@ -1,5 +1,8 @@
 # Settings of pedalpause
-bluetooth-address
+bluetooth_address
+
+.idea/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
